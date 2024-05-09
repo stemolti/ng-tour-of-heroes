@@ -28,11 +28,11 @@ because that would block the browser as it waits to return data.
 HeroService.getHeroes() should returns an Observable so that it can use the Angular 
 HttpClient.get method to fetch the heroes and have HttpClient.get() return an Observable.
 */
-  getHeroes(): Observable<Hero[]>{
-    const heroes = of(HEROES);
-      this.messageService.add('HeroService: fetched heroes');
-    return heroes;
-  }
+
+/** GET heroes from the server */
+getHeroes(): Observable<Hero[]> {
+  return this.http.get<Hero[]>(this.heroesUrl)
+}
 
   getHero(id: number): Observable<Hero> {
     // For now, assume that a hero with the specified `id` always exists.
