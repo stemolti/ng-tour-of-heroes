@@ -1,27 +1,31 @@
-# NgTourOfHeroes
+# Add the AppRoutingModule
+In Angular, the best practice is to load and configure the router in a separate, top-level module. The router is dedicated to routing and imported by the root AppModule.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+First, the app-routing.module.ts file imports RouterModule and Routes so the application can have routing capability
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Routes
+Routes tell the Router which view to display when a user clicks a link or pastes a URL into the browser address bar.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The @NgModule metadata initializes the router and starts it listening for browser location changes.
 
-## Build
+The following line adds the RouterModule to the AppRoutingModule imports array and configures it with the routes in one step by calling RouterModule.forRoot():
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    imports: [ RouterModule.forRoot(routes) ]
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The method is called forRoot() because you configure the router at the application's root level. The forRoot() method supplies the service providers and directives needed for routing, and performs the initial navigation based on the current browser URL.
 
-## Running end-to-end tests
+# RouterOutlet
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Next, AppRoutingModule exports RouterModule to be available throughout the application.
 
-## Further help
+The router-outlet tells the router where to display routed views.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The RouterOutlet is one of the router directives that became available to the AppComponent because AppModule imports AppRoutingModule which exported RouterModule. The ng generate command you ran at the start of this tutorial added this import because of the --module=app flag. If you didn't use the ng generate command to create app-routing.module.ts, import AppRoutingModule into app.module.ts and add it to the imports array of the NgModule.
+
+## Add a navigation link using routerLink
+A routerLink attribute is set to "/heroes", the string that the router matches to the route to HeroesComponent. The routerLink is the selector for the RouterLink directive that turns user clicks into router navigations. It's another of the public directives in the RouterModule.
+
+The browser refreshes and displays the application title and heroes link, but not the heroes list.
