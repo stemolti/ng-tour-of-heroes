@@ -29,3 +29,17 @@ The RouterOutlet is one of the router directives that became available to the Ap
 A routerLink attribute is set to "/heroes", the string that the router matches to the route to HeroesComponent. The routerLink is the selector for the RouterLink directive that turns user clicks into router navigations. It's another of the public directives in the RouterModule.
 
 The browser refreshes and displays the application title and heroes link, but not the heroes list.
+
+
+# HttpClient
+
+HTTP is a request/response protocol. You make a request, it returns a single response.
+
+In general, an observable can return more than one value over time. An observable from HttpClient always emits a single value and then completes, never to emit again.
+
+      getHeroes(): Observable<Hero[]> {
+        return this.http.get<Hero[]>(this.heroesUrl)
+      }
+
+
+This particular call to HttpClient.get() returns an Observable<Hero[]>, which is an observable of hero arrays. In practice, it only returns a single hero array.
