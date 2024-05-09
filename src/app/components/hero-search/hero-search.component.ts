@@ -19,6 +19,16 @@ export class HeroSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
+  /**
+  
+  debounceTime(300) waits until the flow of new string events pauses for 300 milliseconds before passing along the latest string. Requests aren't likely to happen more frequently than 300 ms.
+
+  distinctUntilChanged() ensures that a request is sent only if the filter text changed.
+
+  switchMap() calls the search service for each search term that makes it through debounce() and distinctUntilChanged(). It cancels and discards previous search observables, returning only the latest search service observable.
+
+   */
+  
   ngOnInit(): void {
     this.heroes$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term

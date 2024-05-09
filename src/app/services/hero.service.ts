@@ -118,7 +118,4 @@ HttpClient.get method to fetch the heroes and have HttpClient.get() return an Ob
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
-
-
-  
 }
